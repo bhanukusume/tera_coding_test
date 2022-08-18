@@ -3,6 +3,7 @@ package com.tera.codingtest.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,9 +18,11 @@ public class User {
 	private int id;
 	private String username;
 	private String email;
+	@Embedded
 	private Address address;
 	private String phone;
 	private String website;
+	@Embedded
 	private Company company;
 	
 	@OneToMany(targetEntity = Post.class,cascade = CascadeType.ALL)
@@ -29,6 +32,36 @@ public class User {
 	@OneToMany(targetEntity = Todo.class,cascade = CascadeType.ALL)
     @JoinColumn(name ="ut_fk",referencedColumnName = "id")
 	private List<Todo> todos;
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public User(String username, String email, Address address, String phone, String website, Company company,
+			List<Post> posts, List<Todo> todos) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.website = website;
+		this.company = company;
+		this.posts = posts;
+		this.todos = todos;
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;

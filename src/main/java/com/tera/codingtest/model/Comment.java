@@ -12,7 +12,9 @@ public class Comment {
  private int id;
  private String name;
  private String body;
-public Comment() {
+
+ 
+ public Comment() {
 	super();
 	// TODO Auto-generated constructor stub
 }
